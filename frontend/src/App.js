@@ -23,53 +23,55 @@ function App() {
     <BrowserRouter>
       <ThemeProvider>
         <AuthProvider>
-          <TimerProvider>
-            <div className="App">
-              <Routes>
-                <Route path="/login" element={<LoginPage />} />
-                <Route
-                  path="/"
-                  element={
-                    <ProtectedRoute>
-                      <DashboardLayout />
-                    </ProtectedRoute>
-                  }
-                >
-                  <Route index element={<Navigate to="/dashboard" replace />} />
-                  <Route path="dashboard" element={<DashboardPage />} />
-                  <Route path="tracker" element={<TimeTrackerPage />} />
-                  <Route path="timesheets" element={<TimesheetsPage />} />
+          <NotificationProvider>
+            <TimerProvider>
+              <div className="App">
+                <Routes>
+                  <Route path="/login" element={<LoginPage />} />
                   <Route
-                    path="admin/approvals"
+                    path="/"
                     element={
-                      <ProtectedRoute requireAdmin>
-                        <AdminApprovalsPage />
+                      <ProtectedRoute>
+                        <DashboardLayout />
                       </ProtectedRoute>
                     }
-                  />
-                  <Route
-                    path="admin/team"
-                    element={
-                      <ProtectedRoute requireAdmin>
-                        <AdminTeamPage />
-                      </ProtectedRoute>
-                    }
-                  />
-                  <Route
-                    path="admin/projects"
-                    element={
-                      <ProtectedRoute requireAdmin>
-                        <AdminProjectsPage />
-                      </ProtectedRoute>
-                    }
-                  />
-                  <Route path="reports" element={<ReportsPage />} />
-                  <Route path="settings" element={<SettingsPage />} />
-                </Route>
-              </Routes>
-              <Toaster position="top-right" />
-            </div>
-          </TimerProvider>
+                  >
+                    <Route index element={<Navigate to="/dashboard" replace />} />
+                    <Route path="dashboard" element={<DashboardPage />} />
+                    <Route path="tracker" element={<TimeTrackerPage />} />
+                    <Route path="timesheets" element={<TimesheetsPage />} />
+                    <Route
+                      path="admin/approvals"
+                      element={
+                        <ProtectedRoute requireAdmin>
+                          <AdminApprovalsPage />
+                        </ProtectedRoute>
+                      }
+                    />
+                    <Route
+                      path="admin/team"
+                      element={
+                        <ProtectedRoute requireAdmin>
+                          <AdminTeamPage />
+                        </ProtectedRoute>
+                      }
+                    />
+                    <Route
+                      path="admin/projects"
+                      element={
+                        <ProtectedRoute requireAdmin>
+                          <AdminProjectsPage />
+                        </ProtectedRoute>
+                      }
+                    />
+                    <Route path="reports" element={<ReportsPage />} />
+                    <Route path="settings" element={<SettingsPage />} />
+                  </Route>
+                </Routes>
+                <Toaster position="top-right" />
+              </div>
+            </TimerProvider>
+          </NotificationProvider>
         </AuthProvider>
       </ThemeProvider>
     </BrowserRouter>
