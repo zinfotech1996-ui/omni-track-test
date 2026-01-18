@@ -17,11 +17,24 @@ import { NotificationDropdown } from './NotificationDropdown';
 export const DashboardLayout = () => {
   const { user, logout } = useAuth();
   const { theme, toggleTheme } = useTheme();
+  const { t, i18n } = useTranslation();
   const location = useLocation();
+  const [currentLanguage, setCurrentLanguage] = useState(i18n.language);
 
   if (!user) {
     return <Navigate to="/login" replace />;
   }
+
+  const changeLanguage = (lng) => {
+    i18n.changeLanguage(lng);
+    setCurrentLanguage(lng);
+  };
+
+  const languages = [
+    { code: 'en', name: t('language.english'), flag: '🇬🇧' },
+    { code: 'es', name: t('language.spanish'), flag: '🇪🇸' },
+    { code: 'fr', name: t('language.french'), flag: '🇫🇷' },
+  ];
 
   const isAdmin = user.role === 'admin';
 
