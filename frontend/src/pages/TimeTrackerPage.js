@@ -18,6 +18,7 @@ export const TimeTrackerPage = () => {
   const [entries, setEntries] = useState([]);
   const [projects, setProjects] = useState([]);
   const [tasks, setTasks] = useState([]);
+  const [allTasks, setAllTasks] = useState([]); // Store all tasks for display
   const [loading, setLoading] = useState(true);
   const [showManualDialog, setShowManualDialog] = useState(false);
   const [selectedDate, setSelectedDate] = useState(new Date().toISOString().split('T')[0]);
