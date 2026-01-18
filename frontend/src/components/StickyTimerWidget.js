@@ -162,33 +162,47 @@ export const StickyTimerWidget = () => {
   }
 
   if (isRunning) {
+    const currentProject = projects.find(p => p.id === activeTimer?.project_id);
+    const currentTask = tasks.find(t => t.id === activeTimer?.task_id);
+    
     return (
       <div
         data-testid="active-timer-widget"
-        className="fixed bottom-6 right-6 z-50 bg-card border border-border shadow-xl rounded-xl p-4 backdrop-blur-md flex items-center gap-4 min-w-[280px]"
+        className="fixed bottom-6 right-6 z-50 bg-card border border-border shadow-xl rounded-xl p-4 backdrop-blur-md min-w-[280px]"
         style={{ backgroundColor: 'rgba(255, 255, 255, 0.95)' }}
       >
-        <div className="flex items-center gap-2">
+        <div className="flex items-center gap-2 mb-3">
           <div className="h-3 w-3 rounded-full bg-green-500 animate-pulse" data-testid="timer-running-indicator"></div>
           <Clock className="h-5 w-5 text-muted-foreground" />
+          <span className="text-xs font-medium text-muted-foreground">RUNNING</span>
         </div>
-        <div className="flex-1">
+        
+        <div className="mb-3">
           <div
             data-testid="timer-display"
-            className="text-2xl font-mono font-medium tabular-nums tracking-wider"
+            className="text-3xl font-mono font-bold tabular-nums tracking-wider"
             style={{ fontFamily: 'JetBrains Mono, monospace' }}
           >
             {formatTime(elapsed)}
           </div>
-          <div className="text-xs text-muted-foreground">Timer running</div>
         </div>
+        
+        <div className="mb-3 space-y-1">
+          <div className="text-xs text-muted-foreground">Project</div>
+          <div className="text-sm font-medium truncate">{currentProject?.name || 'Loading...'}</div>
+          <div className="text-xs text-muted-foreground mt-2">Task</div>
+          <div className="text-sm font-medium truncate">{currentTask?.name || 'Loading...'}</div>
+        </div>
+        
         <Button
           variant="destructive"
           size="sm"
           onClick={handleStop}
           data-testid="timer-stop-btn"
+          className="w-full"
         >
-          <Square className="h-4 w-4" />
+          <Square className="h-4 w-4 mr-2" />
+          Stop Timer
         </Button>
       </div>
     );
