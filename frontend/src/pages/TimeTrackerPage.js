@@ -200,7 +200,7 @@ export const TimeTrackerPage = () => {
               ) : (
                 entries.map((entry) => {
                   const project = projects.find(p => p.id === entry.project_id);
-                  const task = tasks.find(t => t.id === entry.task_id) || { name: 'Loading...' };
+                  const task = allTasks.find(t => t.id === entry.task_id);
                   
                   return (
                     <tr key={entry.id} className="border-b border-border hover:bg-muted/20 transition-colors">
@@ -208,7 +208,7 @@ export const TimeTrackerPage = () => {
                         {new Date(entry.start_time).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}
                       </td>
                       <td className="p-4 align-middle">{project?.name || 'Unknown'}</td>
-                      <td className="p-4 align-middle">{task.name}</td>
+                      <td className="p-4 align-middle">{task?.name || 'Unknown'}</td>
                       <td className="p-4 align-middle font-medium">{formatDuration(entry.duration)}</td>
                       <td className="p-4 align-middle">
                         <span className={`inline-flex items-center rounded-full px-2.5 py-0.5 text-xs font-semibold ${
