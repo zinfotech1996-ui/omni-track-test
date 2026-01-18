@@ -1017,6 +1017,67 @@ async def get_dashboard_stats(current_user: User = Depends(get_current_user)):
             "total_entries": len(week_entries)
         }
 
+
+# Notification routes
+@api_router.get("/notifications", response_model=List[Notification])
+async def get_notifications(
+    limit: int = 50,
+    current_user: User = Depends(get_current_user)
+):
+    """Get user's notifications"""
+    notifications = await db.notifications.find(
+        {"user_id": current_user.id},
+        {"_id": 0}
+    ).sort("created_at", -1).limit(limit).to_list(limit)
+    
+    # Parse datetime strings
+    for notif in notifications:
+        if isinstance(notif['created_at'], str):
+            notif['created_at'] = datetime.fromisoformat(notif['created_at'])
+    
+    return notifications
+
+@api_router.get("/notifications/unread-count")
+async def get_unread_count(current_user: User = Depends(get_current_user)):
+    """Get count of unread notifications"""
+    count = await db.notifications.count_documents({
+        "user_id": current_user.id,
+        "read": False
+    })
+    return {"count": count}
+
+@api_router.put("/notifications/{notification_id}/read")
+async def mark_notification_read(
+    notification_id: str,
+    current_user: User = Depends(get_current_user)
+):
+    """Mark a notification as read"""
+    notification = await db.notifications.find_one({
+        "id": notification_id,
+        "user_id": current_user.id
+    }, {"_id": 0})
+    
+    if not notification:
+        raise HTTPException(status_code=404, detail="Notification not found")
+    
+    await db.notifications.update_one(
+        {"id": notification_id},
+        {"$set": {"read": True}}
+    )
+    
+    return {"success": True}
+
+@api_router.put("/notifications/mark-all-read")
+async def mark_all_notifications_read(current_user: User = Depends(get_current_user)):
+    """Mark all user's notifications as read"""
+    await db.notifications.update_many(
+        {"user_id": current_user.id, "read": False},
+        {"$set": {"read": True}}
+    )
+    
+    return {"success": True}
+
+
 # Include router
 app.include_router(api_router)
 
