@@ -1,10 +1,18 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Outlet, useLocation, Navigate } from 'react-router-dom';
 import { useAuth } from '../contexts/AuthContext';
 import { useTheme } from '../contexts/ThemeContext';
-import { Clock, LayoutDashboard, Users, FolderKanban, FileText, BarChart3, Settings, LogOut, Moon, Sun } from 'lucide-react';
+import { Clock, LayoutDashboard, Users, FolderKanban, FileText, BarChart3, Settings, LogOut, Moon, Sun, Globe, Bell } from 'lucide-react';
 import { Button } from './ui/button';
 import { StickyTimerWidget } from './StickyTimerWidget';
+import { useTranslation } from 'react-i18next';
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuTrigger,
+} from './ui/dropdown-menu';
+import { NotificationDropdown } from './NotificationDropdown';
 
 export const DashboardLayout = () => {
   const { user, logout } = useAuth();
