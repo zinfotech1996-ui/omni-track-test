@@ -1,0 +1,87 @@
+{
+  "app": {
+    "title": "Omni Gratum",
+    "subtitle": "Sistema de Seguimiento de Tiempo"
+  },
+  "nav": {
+    "dashboard": "Panel",
+    "timeTracker": "Registrador de Tiempo",
+    "timesheets": "Hojas de Tiempo",
+    "approvals": "Aprobaciones",
+    "team": "Equipo",
+    "projectsTasks": "Proyectos y Tareas",
+    "reports": "Informes",
+    "settings": "Configuración"
+  },
+  "auth": {
+    "login": "Iniciar Sesión",
+    "logout": "Cerrar Sesión",
+    "email": "Correo Electrónico",
+    "password": "Contraseña",
+    "welcomeBack": "Bienvenido de nuevo",
+    "signInToContinue": "Inicia sesión para continuar a tu cuenta"
+  },
+  "dashboard": {
+    "welcome": "Bienvenido de nuevo",
+    "quickStats": "Estadísticas Rápidas",
+    "todayHours": "Horas de Hoy",
+    "weekHours": "Horas de la Semana",
+    "pendingTimesheets": "Hojas de Tiempo Pendientes",
+    "activeProjects": "Proyectos Activos",
+    "recentActivity": "Actividad Reciente",
+    "noActivity": "Sin actividad reciente"
+  },
+  "timeTracker": {
+    "title": "Registrador de Tiempo",
+    "startTimer": "Iniciar Temporizador",
+    "stopTimer": "Detener Temporizador",
+    "selectProject": "Seleccionar Proyecto",
+    "selectTask": "Seleccionar Tarea",
+    "addNotes": "Agregar notas",
+    "duration": "Duración",
+    "noEntries": "No hay entradas de tiempo para este período"
+  },
+  "timesheets": {
+    "title": "Hojas de Tiempo",
+    "submit": "Enviar Hoja de Tiempo",
+    "status": "Estado",
+    "draft": "Borrador",
+    "submitted": "Enviado",
+    "approved": "Aprobado",
+    "denied": "Rechazado",
+    "totalHours": "Horas Totales",
+    "weekOf": "Semana del"
+  },
+  "notifications": {
+    "title": "Notificaciones",
+    "noNotifications": "Sin notificaciones",
+    "markAsRead": "Marcar como leído",
+    "markAllAsRead": "Marcar todo como leído",
+    "timesheetSubmitted": "Hoja de Tiempo Enviada",
+    "timesheetApproved": "Hoja de Tiempo Aprobada",
+    "timesheetDenied": "Hoja de Tiempo Rechazada",
+    "newSubmission": "{{employeeName}} envió una hoja de tiempo para {{weekStart}}",
+    "approved": "Tu hoja de tiempo para {{weekStart}} ha sido aprobada",
+    "denied": "Tu hoja de tiempo para {{weekStart}} ha sido rechazada"
+  },
+  "common": {
+    "save": "Guardar",
+    "cancel": "Cancelar",
+    "delete": "Eliminar",
+    "edit": "Editar",
+    "add": "Agregar",
+    "search": "Buscar",
+    "filter": "Filtrar",
+    "loading": "Cargando...",
+    "error": "Error",
+    "success": "Éxito",
+    "confirm": "Confirmar",
+    "actions": "Acciones"
+  },
+  "language": {
+    "select": "Seleccionar Idioma",
+    "english": "Inglés",
+    "spanish": "Español",
+    "french": "Francés"
+  }
+}
