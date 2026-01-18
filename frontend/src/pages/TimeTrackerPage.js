@@ -37,6 +37,13 @@ export const TimeTrackerPage = () => {
     fetchEntries();
   }, [selectedDate]);
 
+  useEffect(() => {
+    // Fetch all tasks when projects are loaded
+    if (projects.length > 0) {
+      fetchAllTasks();
+    }
+  }, [projects]);
+
   const fetchProjects = async () => {
     try {
       const response = await axios.get(`${API}/projects`, {
