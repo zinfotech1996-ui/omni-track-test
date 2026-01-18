@@ -178,12 +178,12 @@ export const ReportsPage = () => {
           {user?.role === 'admin' && (
             <div>
               <label className="text-sm font-medium mb-2 block">Employee</label>
-              <Select value={filters.user_id} onValueChange={(value) => setFilters({ ...filters, user_id: value })}>
+              <Select value={filters.user_id || 'all'} onValueChange={(value) => setFilters({ ...filters, user_id: value === 'all' ? '' : value })}>
                 <SelectTrigger data-testid="filter-user">
                   <SelectValue placeholder="All employees" />
                 </SelectTrigger>
                 <SelectContent>
-                  <SelectItem value="">All employees</SelectItem>
+                  <SelectItem value="all">All employees</SelectItem>
                   {users.map((user) => (
                     <SelectItem key={user.id} value={user.id}>
                       {user.name}
