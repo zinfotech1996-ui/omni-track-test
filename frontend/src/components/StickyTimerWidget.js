@@ -26,6 +26,8 @@ export const StickyTimerWidget = () => {
   useEffect(() => {
     if (selectedProject) {
       fetchTasks(selectedProject);
+    } else {
+      setTasks([]);
     }
   }, [selectedProject]);
 
@@ -37,6 +39,31 @@ export const StickyTimerWidget = () => {
       setSelectedTask(user.default_task);
     }
   }, [user]);
+
+  // Load active timer project and task info on mount
+  useEffect(() => {
+    if (activeTimer?.project_id && activeTimer?.task_id) {
+      loadActiveTimerInfo();
+    }
+  }, [activeTimer]);
+
+  const loadActiveTimerInfo = async () => {
+    if (!activeTimer) return;
+    
+    try {
+      // Fetch all projects if not loaded
+      if (projects.length === 0) {
+        await fetchProjects();
+      }
+      
+      // Fetch tasks for active timer's project
+      if (activeTimer.project_id) {
+        await fetchTasks(activeTimer.project_id);
+      }
+    } catch (error) {
+      console.error('Failed to load active timer info:', error);
+    }
+  };
 
   const fetchProjects = async () => {
     try {
