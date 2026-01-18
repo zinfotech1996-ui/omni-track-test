@@ -1,0 +1,181 @@
+{
+  "identity": {
+    "name": "Omni Gratum",
+    "archetype": "The Performance Pro",
+    "vibe": "Precision, Flow, Clarity, Trust",
+    "mission": "Make time tracking feel like a high-performance sport, not a chore.",
+    "principles": [
+      "Frictionless Entry: Starting a timer should be easier than breathing.",
+      "Data Density: Admins need to see the pulse of the company in one glance.",
+      "Visual Silence: If it's not data or action, remove it.",
+      "Feedback Loops: Every action (start, stop, submit) has immediate, tactile visual feedback."
+    ]
+  },
+  "typography": {
+    "fonts": {
+      "heading": "Plus Jakarta Sans, sans-serif",
+      "body": "Inter, sans-serif",
+      "mono": "JetBrains Mono, monospace"
+    },
+    "weights": {
+      "heading": "700",
+      "subheading": "600",
+      "body": "400",
+      "bold": "600"
+    },
+    "tracking": {
+      "heading": "-0.02em",
+      "body": "0",
+      "mono": "0"
+    },
+    "scale": {
+      "h1": "text-4xl md:text-5xl font-bold tracking-tight",
+      "h2": "text-3xl font-semibold tracking-tight",
+      "h3": "text-2xl font-semibold tracking-tight",
+      "p": "text-base text-muted-foreground leading-relaxed",
+      "small": "text-sm text-muted-foreground",
+      "mono_timer": "text-3xl md:text-4xl font-mono font-medium tracking-widest tabular-nums"
+    }
+  },
+  "colors": {
+    "theme": "light",
+    "palette": {
+      "primary": {
+        "DEFAULT": "#2563EB",
+        "foreground": "#FFFFFF",
+        "hover": "#1D4ED8",
+        "active": "#1E40AF"
+      },
+      "secondary": {
+        "DEFAULT": "#F1F5F9",
+        "foreground": "#0F172A"
+      },
+      "background": "#FFFFFF",
+      "foreground": "#0F172A",
+      "muted": {
+        "DEFAULT": "#F8FAFC",
+        "foreground": "#64748B"
+      },
+      "border": "#E2E8F0",
+      "input": "#E2E8F0",
+      "ring": "#2563EB",
+      "status": {
+        "success": "#10B981",
+        "warning": "#F59E0B",
+        "error": "#EF4444",
+        "info": "#3B82F6",
+        "running": "#10B981",
+        "paused": "#F59E0B",
+        "stopped": "#64748B"
+      }
+    },
+    "gradients": {
+      "timer_active": "linear-gradient(135deg, #2563EB 0%, #1D4ED8 100%)",
+      "timer_paused": "linear-gradient(135deg, #F59E0B 0%, #D97706 100%)"
+    }
+  },
+  "layout": {
+    "spacing": {
+      "container_padding": "p-6 md:p-8 lg:p-12",
+      "section_gap": "gap-8",
+      "component_gap": "gap-4"
+    },
+    "grid": {
+      "dashboard": "grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-6",
+      "form": "grid grid-cols-1 gap-6 max-w-2xl"
+    },
+    "containers": {
+      "main": "max-w-7xl mx-auto w-full",
+      "auth": "max-w-md mx-auto w-full"
+    },
+    "z_index": {
+      "sticky_timer": "z-50",
+      "modal": "z-50",
+      "dropdown": "z-40",
+      "header": "z-30"
+    }
+  },
+  "components": {
+    "TimerWidget": {
+      "description": "The heart of the app. Always visible, sticky, or floating.",
+      "style": "bg-card border border-border shadow-lg rounded-xl p-4 flex items-center justify-between gap-4",
+      "typography": "font-mono text-2xl tabular-nums",
+      "interaction": "Pulse animation on the colon separator when active."
+    },
+    "StatsCard": {
+      "description": "Minimalist card for dashboard metrics.",
+      "style": "bg-card border border-border rounded-xl p-6 shadow-sm hover:shadow-md transition-shadow duration-200",
+      "elements": "Label (text-sm muted), Value (text-3xl font-bold), Trend (text-xs)"
+    },
+    "TimesheetTable": {
+      "description": "Dense data table for admin review.",
+      "style": "w-full text-sm text-left",
+      "header": "bg-muted/50 text-muted-foreground font-medium",
+      "row": "border-b border-border hover:bg-muted/20 transition-colors",
+      "cell": "p-4 align-middle"
+    },
+    "StatusBadge": {
+      "description": "Pill-shaped indicator for status.",
+      "style": "inline-flex items-center rounded-full px-2.5 py-0.5 text-xs font-semibold transition-colors focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2",
+      "variants": {
+        "approved": "bg-green-100 text-green-800",
+        "pending": "bg-yellow-100 text-yellow-800",
+        "rejected": "bg-red-100 text-red-800",
+        "draft": "bg-gray-100 text-gray-800"
+      }
+    },
+    "Button": {
+      "base": "inline-flex items-center justify-center whitespace-nowrap rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50",
+      "variants": {
+        "default": "bg-primary text-primary-foreground hover:bg-primary/90",
+        "destructive": "bg-destructive text-destructive-foreground hover:bg-destructive/90",
+        "outline": "border border-input bg-background hover:bg-accent hover:text-accent-foreground",
+        "secondary": "bg-secondary text-secondary-foreground hover:bg-secondary/80",
+        "ghost": "hover:bg-accent hover:text-accent-foreground",
+        "link": "text-primary underline-offset-4 hover:underline"
+      }
+    }
+  },
+  "motion": {
+    "transitions": {
+      "default": "transition-all duration-200 ease-in-out",
+      "fast": "transition-all duration-100 ease-out",
+      "slow": "transition-all duration-500 ease-in-out"
+    },
+    "animations": {
+      "fade_in": "animate-in fade-in duration-300",
+      "slide_up": "animate-in slide-in-from-bottom-4 duration-300",
+      "pulse": "animate-pulse"
+    }
+  },
+  "assets": {
+    "images": {
+      "login_bg": "https://images.unsplash.com/photo-1758208974170-3a3037da0c69?crop=entropy&cs=srgb&fm=jpg&q=85",
+      "empty_state": "https://images.unsplash.com/photo-1765187924772-fa48e1fc675f?crop=entropy&cs=srgb&fm=jpg&q=85",
+      "user_placeholder": "https://ui-avatars.com/api/?background=random"
+    },
+    "icons": "lucide-react"
+  },
+  "accessibility": {
+    "contrast": "Ensure 4.5:1 contrast ratio for normal text.",
+    "focus": "Visible focus rings on all interactive elements.",
+    "aria": "Use aria-label for icon-only buttons (like the timer play/pause)."
+  },
+  "instructions_to_main_agent": {
+    "file_extension": "Use .js and .jsx for all React files. Do NOT use .ts or .tsx.",
+    "styling": "Use Tailwind CSS utility classes for 95% of styling. Use custom CSS in App.css only for complex animations.",
+    "state_management": "Use React Context for global state (Auth, Timer).",
+    "timer_logic": "The timer must run in a Web Worker or use robust date-math (Date.now() - startTime) to prevent drift when the tab is inactive.",
+    "components": "Build components in /src/components/ui/ folder. Use functional components with hooks.",
+    "testing": "Add data-testid to all buttons, inputs, and key containers."
+  },
+  "UNIVERSAL_GUIDELINES_FOR_MAIN_AGENT": [
+    "Do NOT use gradients for text or backgrounds unless specified in the palette.",
+    "Avoid 'Inter' for headings; use 'Plus Jakarta Sans' via Google Fonts import.",
+    "Use 'sonner' for toast notifications.",
+    "Ensure the timer widget is persistent across route changes (put it in a Layout component).",
+    "For the Admin Dashboard, use the 'Bento Grid' layout (Mode B) defined in the persona.",
+    "Never use pure black (#000000); use slate-900 or similar.",
+    "Add 'backdrop-blur-md' to the sticky timer widget for a glass effect."
+  ]
+}
