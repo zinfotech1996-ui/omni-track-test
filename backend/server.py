@@ -607,6 +607,27 @@ async def review_timesheet(
         }}
     )
     
+    # Create notification for the employee
+    employee_id = timesheet['user_id']
+    if review.status == TimesheetStatus.APPROVED:
+        notification_type = NotificationType.TIMESHEET_APPROVED
+        title = "Timesheet Approved"
+        message = f"Your timesheet for {timesheet['week_start']} has been approved"
+    else:
+        notification_type = NotificationType.TIMESHEET_DENIED
+        title = "Timesheet Denied"
+        message = f"Your timesheet for {timesheet['week_start']} has been denied"
+        if review.admin_comment:
+            message += f": {review.admin_comment}"
+    
+    await create_notification(
+        user_id=employee_id,
+        notification_type=notification_type,
+        title=title,
+        message=message,
+        related_timesheet_id=timesheet_id
+    )
+    
     return {"success": True}
 
 # Admin - Employee Management
