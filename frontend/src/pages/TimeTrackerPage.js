@@ -66,6 +66,22 @@ export const TimeTrackerPage = () => {
     }
   };
 
+  const fetchAllTasks = async () => {
+    try {
+      // Fetch all tasks from all projects
+      const taskPromises = projects.map(project =>
+        axios.get(`${API}/tasks?project_id=${project.id}`, {
+          headers: { Authorization: `Bearer ${token}` }
+        })
+      );
+      const responses = await Promise.all(taskPromises);
+      const allTasksData = responses.flatMap(response => response.data);
+      setAllTasks(allTasksData);
+    } catch (error) {
+      console.error('Failed to fetch all tasks:', error);
+    }
+  };
+
   const fetchEntries = async () => {
     try {
       const response = await axios.get(`${API}/time-entries?start_date=${selectedDate}&end_date=${selectedDate}`, {
