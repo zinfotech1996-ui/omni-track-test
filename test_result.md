@@ -101,3 +101,156 @@
 #====================================================================================================
 # Testing Data - Main Agent and testing sub agent both should log testing data below this section
 #====================================================================================================
+
+user_problem_statement: |
+  Add multi-language feature with globe icon to select language (English, Spanish, French).
+  Add notification bell for Employees and Admin:
+  - Admins receive notifications when employees submit timesheets
+  - Employees receive notifications when admin approves or denies their timesheets
+
+backend:
+  - task: "Multi-language support - Translation infrastructure"
+    implemented: true
+    working: "NA"
+    file: "frontend/src/i18n/"
+    stuck_count: 0
+    priority: "high"
+    needs_retesting: true
+    status_history:
+      - working: "NA"
+        agent: "main"
+        comment: "Created i18n configuration with translations for English, Spanish, and French. Installed i18next, react-i18next, and i18next-browser-languagedetector."
+  
+  - task: "Notification system backend - Models and endpoints"
+    implemented: true
+    working: "NA"
+    file: "backend/server.py"
+    stuck_count: 0
+    priority: "high"
+    needs_retesting: true
+    status_history:
+      - working: "NA"
+        agent: "main"
+        comment: "Added Notification model, NotificationType enum, and create_notification helper function. Created 4 notification endpoints: GET /api/notifications, GET /api/notifications/unread-count, PUT /api/notifications/{id}/read, PUT /api/notifications/mark-all-read"
+  
+  - task: "Timesheet submission notifications"
+    implemented: true
+    working: "NA"
+    file: "backend/server.py"
+    stuck_count: 0
+    priority: "high"
+    needs_retesting: true
+    status_history:
+      - working: "NA"
+        agent: "main"
+        comment: "Modified submit_timesheet endpoint to create notifications for all admins when an employee submits a timesheet."
+  
+  - task: "Timesheet review notifications"
+    implemented: true
+    working: "NA"
+    file: "backend/server.py"
+    stuck_count: 0
+    priority: "high"
+    needs_retesting: true
+    status_history:
+      - working: "NA"
+        agent: "main"
+        comment: "Modified review_timesheet endpoint to create notifications for employees when their timesheet is approved or denied."
+
+frontend:
+  - task: "Language selector UI with globe icon"
+    implemented: true
+    working: "NA"
+    file: "frontend/src/components/DashboardLayout.js"
+    stuck_count: 0
+    priority: "high"
+    needs_retesting: true
+    status_history:
+      - working: "NA"
+        agent: "main"
+        comment: "Added globe icon with dropdown menu in DashboardLayout sidebar. Users can select between English, Spanish, and French. Navigation and key UI elements now use translation keys."
+  
+  - task: "NotificationContext for polling"
+    implemented: true
+    working: "NA"
+    file: "frontend/src/contexts/NotificationContext.js"
+    stuck_count: 0
+    priority: "high"
+    needs_retesting: true
+    status_history:
+      - working: "NA"
+        agent: "main"
+        comment: "Created NotificationContext with 30-second polling mechanism. Provides notifications list, unread count, markAsRead, and markAllAsRead functions."
+  
+  - task: "Notification bell UI with badge"
+    implemented: true
+    working: "NA"
+    file: "frontend/src/components/NotificationDropdown.js"
+    stuck_count: 0
+    priority: "high"
+    needs_retesting: true
+    status_history:
+      - working: "NA"
+        agent: "main"
+        comment: "Created NotificationDropdown component with bell icon and unread count badge. Shows list of notifications with mark as read functionality."
+
+metadata:
+  created_by: "main_agent"
+  version: "1.0"
+  test_sequence: 0
+  run_ui: false
+
+test_plan:
+  current_focus:
+    - "Notification system backend - Models and endpoints"
+    - "Timesheet submission notifications"
+    - "Timesheet review notifications"
+    - "Language selector UI with globe icon"
+    - "NotificationContext for polling"
+    - "Notification bell UI with badge"
+  stuck_tasks: []
+  test_all: true
+  test_priority: "high_first"
+
+agent_communication:
+  - agent: "main"
+    message: |
+      Implementation Complete:
+      
+      MULTI-LANGUAGE FEATURE:
+      - Installed i18next, react-i18next, i18next-browser-languagedetector
+      - Created translation files for English, Spanish, French
+      - Added globe icon in DashboardLayout sidebar for language selection
+      - Translated navigation, app title, and key UI elements
+      
+      NOTIFICATION SYSTEM:
+      Backend:
+      - Added Notification model with fields: id, user_id, type, title, message, read, related_timesheet_id, created_at
+      - Added NotificationType enum: TIMESHEET_SUBMITTED, TIMESHEET_APPROVED, TIMESHEET_DENIED
+      - Created helper function create_notification()
+      - Added 4 API endpoints:
+        * GET /api/notifications - fetch user's notifications
+        * GET /api/notifications/unread-count - get unread count
+        * PUT /api/notifications/{id}/read - mark single notification as read
+        * PUT /api/notifications/mark-all-read - mark all as read
+      - Modified submit_timesheet to notify all admins
+      - Modified review_timesheet to notify employee
+      
+      Frontend:
+      - Created NotificationContext with 30-second polling
+      - Created NotificationDropdown component with bell icon
+      - Shows unread count badge (9+ for 10 or more)
+      - Integrated with App.js via NotificationProvider
+      - Added to DashboardLayout sidebar
+      
+      TESTING NEEDED:
+      1. Test language switching between English, Spanish, French
+      2. Test employee submitting timesheet creates notification for admin
+      3. Test admin approving timesheet creates notification for employee
+      4. Test admin denying timesheet creates notification for employee
+      5. Test notification bell shows correct unread count
+      6. Test marking single notification as read
+      7. Test marking all notifications as read
+      8. Test notification polling (wait 30+ seconds after action)
+      
+      Backend is running on port 8001. Frontend compiled successfully.
