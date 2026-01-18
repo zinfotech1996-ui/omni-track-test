@@ -540,6 +540,17 @@ async def submit_timesheet(request: TimesheetSubmit, current_user: User = Depend
         await db.timesheets.insert_one(timesheet_doc)
         timesheet_id = timesheet.id
     
+    # Create notifications for all admins
+    admins = await db.users.find({"role": UserRole.ADMIN.value}, {"_id": 0}).to_list(1000)
+    for admin in admins:
+        await create_notification(
+            user_id=admin['id'],
+            notification_type=NotificationType.TIMESHEET_SUBMITTED,
+            title="New Timesheet Submission",
+            message=f"{current_user.name} submitted a timesheet for {request.week_start}",
+            related_timesheet_id=timesheet_id
+        )
+    
     return {"success": True, "timesheet_id": timesheet_id}
 
 @api_router.get("/timesheets", response_model=List[Timesheet])
