@@ -8,7 +8,7 @@ import {
   DropdownMenuTrigger,
   DropdownMenuSeparator,
 } from './ui/dropdown-menu';
-import { ScrollArea } from './ui/scroll-area';
+import { ScrollArea } from './ui/scroll-area.jsx';
 import { useNotifications } from '../contexts/NotificationContext';
 import { useTranslation } from 'react-i18next';
 import { formatDistanceToNow } from 'date-fns';
