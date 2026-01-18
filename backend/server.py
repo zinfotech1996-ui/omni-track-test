@@ -221,6 +221,21 @@ def create_access_token(data: dict) -> str:
     encoded_jwt = jwt.encode(to_encode, SECRET_KEY, algorithm=ALGORITHM)
     return encoded_jwt
 
+async def create_notification(user_id: str, notification_type: NotificationType, title: str, message: str, related_timesheet_id: Optional[str] = None):
+    """Helper function to create a notification"""
+    notification = Notification(
+        user_id=user_id,
+        type=notification_type,
+        title=title,
+        message=message,
+        related_timesheet_id=related_timesheet_id
+    )
+    notification_doc = notification.model_dump()
+    notification_doc['created_at'] = notification_doc['created_at'].isoformat()
+    await db.notifications.insert_one(notification_doc)
+    return notification
+
+
 async def get_current_user(credentials: HTTPAuthorizationCredentials = Depends(security)) -> User:
     try:
         token = credentials.credentials
